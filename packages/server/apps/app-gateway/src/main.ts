@@ -13,7 +13,7 @@ async function bootstrap() {
     ? (ALLOWED_ORIGINS?.includes?.(',') && ALLOWED_ORIGINS?.split?.(',')) ||
       ALLOWED_ORIGINS
     : undefined;
-  const ORIGINS = [ALLOWED_ORIGIN_ARR, CLIENT_URL]
+  const ORIGINS = [CLIENT_URL, ALLOWED_ORIGIN_ARR]
     .filter((origin) => origin)
     .flat(1);
   app.enableCors({

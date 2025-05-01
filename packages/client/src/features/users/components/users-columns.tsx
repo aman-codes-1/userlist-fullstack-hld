@@ -3,9 +3,10 @@ import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import LongText from "@/components/long-text";
-import { User } from "../data/schema";
+import { InterestItem, User } from "../data/schema";
 import { DataTableColumnHeader } from "./data-table-column-header";
 import { DataTableRowActions } from "./data-table-row-actions";
+import { generateInterests } from "../data/users";
 
 export const columns: ColumnDef<User>[] = [
   {
@@ -92,9 +93,10 @@ export const columns: ColumnDef<User>[] = [
       if (interests.length === 0) {
         return <span className="text-gray-400">—</span>;
       }
+      const interestsWithBadges = generateInterests(interests);
       return (
         <div className="flex flex-wrap gap-1">
-          {interests.map(({ name, badgeColor }: any) => (
+          {interestsWithBadges.map(({ name, badgeColor }: InterestItem) => (
             <Badge key={name} className={cn('capitalize', badgeColor)}>{name}</Badge>
           ))}
         </div>

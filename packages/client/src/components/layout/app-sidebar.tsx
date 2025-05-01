@@ -9,11 +9,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" variant="floating" {...props}>
       <SidebarContent>
-        {sidebarData.navGroups.map((props: any) => (
-          <Suspense fallback={null}>
+        <Suspense fallback={null}>
+          {sidebarData.navGroups.map((props: any) => (
             <NavGroup key={props.title} {...props} />
-          </Suspense>
-        ))}
+          ))}
+        </Suspense>
       </SidebarContent>
       <SidebarRail />
     </Sidebar>

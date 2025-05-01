@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "@/app/ui/global.css";
+import { Toaster } from 'sonner';
 import { ThemeProvider } from "@/contexts/theme-context";
 import { FontProvider } from "@/contexts/font-context";
 import { cn } from "@/lib/utils";
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body>
         <ThemeProvider defaultTheme="light">
           <FontProvider>
+            <Toaster richColors closeButton />
             <SidebarProvider defaultOpen>
               <AppSidebar />
               <div

@@ -26,7 +26,6 @@ import {
 import { User } from "../data/schema";
 import { DataTablePagination } from "./data-table-pagination";
 import { DataTableToolbar } from "./data-table-toolbar";
-import { InterestItem } from "../data/users";
 
 declare module "@tanstack/react-table" {
   interface ColumnMeta<TData extends RowData, TValue> {
@@ -50,13 +49,10 @@ export function UsersTable({ columns, data }: DataTableProps) {
     const search = String(filterValue).toLowerCase();
     return ["name", "email", "age", "mobile", "interests"].some((colId) => {
       const value = row.getValue(colId);
-      if (colId === "interests" && Array.isArray(value)) {
-        const value = row.getValue(colId);
-        return (value as InterestItem[]).some((interest) =>
-          interest.name.toLowerCase().includes(search)
-        );
-      }
-      return String(value).toLowerCase().includes(search);
+      const normalized = Array.isArray(value)
+        ? value.join(" ").toLowerCase()
+        : String(value).toLowerCase();
+      return normalized.includes(search);
     });
   };
 

@@ -1,9 +1,10 @@
 "use client";
 
 import { z } from "zod";
+import validator from "validator";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { showSubmittedData } from "@/utils/show-submitted-data";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -22,64 +23,49 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { PasswordInput } from "@/components/password-input";
-import { User } from "../data/schema";
+import { showSubmittedData } from "@/utils/show-submitted-data";
+import { InterestItem, User } from "../data/schema";
+import { MultiSelect } from "@/components/multi-select";
+import { ALL_INTERESTS } from "../data/users";
+import { createUser } from "@/lib/api";
+import { useUsers } from "../context/users-context";
 
-const formSchema = z
-  .object({
-    name: z.string().min(1, { message: "Name is required." }),
-    email: z
-      .string()
-      .min(1, { message: "Email is required." })
-      .email({ message: "Email is invalid." }),
-    mobile: z.string().min(1, { message: "Phone number is required." }),
-    password: z.string().transform((pwd) => pwd.trim()),
-    confirmPassword: z.string().transform((pwd) => pwd.trim()),
-    isEdit: z.boolean(),
-  })
-  .superRefine(({ isEdit, password, confirmPassword }, ctx) => {
-    if (!isEdit || (isEdit && password !== "")) {
-      if (password === "") {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: "Password is required.",
-          path: ["password"],
-        });
+const formSchema = z.object({
+  name: z
+    .string()
+    .nonempty({ message: "Name is required." })
+    .regex(/^[A-Za-z]+(?: [A-Za-z]+)*$/, {
+      message:
+        "Name must only contain letters with a single space between words.",
+    })
+    .max(70, { message: "Name is too long" }),
+  email: z
+    .string()
+    .nonempty({ message: "Email is required." })
+    .email({ message: "Email is invalid." }),
+  mobile: z
+    .string()
+    .nonempty({ message: "Phone number is required." })
+    .refine(
+      (val) => validator.isMobilePhone(val, "any", { strictMode: true }),
+      {
+        message: "Phone number is invalid.",
       }
+    ),
+  age: z
+    .number({ required_error: "Age is required." })
+    .min(1, "Invalid Age")
+    .max(150, "Age cannot be greater than 150."),
+  interests: z
+    .array(
+      z
+        .string({ required_error: "Interests are required." })
+        .min(1, "At least provide one interest.")
+    )
+    .min(1, { message: "Interests are required." }),
+  isEdit: z.boolean(),
+});
 
-      if (password.length < 8) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: "Password must be at least 8 characters long.",
-          path: ["password"],
-        });
-      }
-
-      if (!password.match(/[a-z]/)) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: "Password must contain at least one lowercase letter.",
-          path: ["password"],
-        });
-      }
-
-      if (!password.match(/\d/)) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: "Password must contain at least one number.",
-          path: ["password"],
-        });
-      }
-
-      if (password !== confirmPassword) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: "Passwords don't match.",
-          path: ["confirmPassword"],
-        });
-      }
-    }
-  });
 type UserForm = z.infer<typeof formSchema>;
 
 interface Props {
@@ -89,33 +75,47 @@ interface Props {
 }
 
 export function UsersActionDialog({ currentRow, open, onOpenChange }: Props) {
+  const { refetchUsers } = useUsers();
   const isEdit = !!currentRow;
   const form = useForm<UserForm>({
     resolver: zodResolver(formSchema),
     defaultValues: isEdit
       ? {
           ...currentRow,
-          password: "",
-          confirmPassword: "",
           isEdit,
         }
       : {
           name: "",
           email: "",
           mobile: "",
-          password: "",
-          confirmPassword: "",
+          age: undefined,
+          interests: [],
           isEdit,
         },
   });
 
-  const onSubmit = (values: UserForm) => {
+  const handleCreateUser = async (values: UserForm) => {
+    try {
+      await createUser(values);
+      await refetchUsers();
+      form.reset();
+      onOpenChange(false);
+    } catch (err: any) {
+      console.error("Create user error:", err);
+      toast.error(err.message);
+    }
+  };
+
+  const handleUpdateUser = async (values: UserForm) => {
     form.reset();
     showSubmittedData(values);
     onOpenChange(false);
-  };
+  }
 
-  const isPasswordTouched = !!form.formState.dirtyFields.password;
+  const interestOptions = ALL_INTERESTS.map((interest) => ({
+    label: interest.charAt(0).toUpperCase() + interest.slice(1),
+    value: interest,
+  }));
 
   return (
     <Dialog
@@ -125,7 +125,12 @@ export function UsersActionDialog({ currentRow, open, onOpenChange }: Props) {
         onOpenChange(state);
       }}
     >
-      <DialogContent className="sm:max-w-lg">
+      <DialogContent
+        className="sm:max-w-lg"
+        onInteractOutside={(e) => {
+          e.preventDefault();
+        }}
+      >
         <DialogHeader className="text-left">
           <DialogTitle>{isEdit ? "Edit User" : "Add New User"}</DialogTitle>
           <DialogDescription>
@@ -137,7 +142,7 @@ export function UsersActionDialog({ currentRow, open, onOpenChange }: Props) {
           <Form {...form}>
             <form
               id="user-form"
-              onSubmit={form.handleSubmit(onSubmit)}
+              onSubmit={form.handleSubmit(isEdit ? handleUpdateUser : handleCreateUser)}
               className="space-y-4 p-0.5"
             >
               <FormField
@@ -146,7 +151,7 @@ export function UsersActionDialog({ currentRow, open, onOpenChange }: Props) {
                 render={({ field }) => (
                   <FormItem className="grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1">
                     <FormLabel className="col-span-2 text-right">
-                      First Name
+                      Full Name
                     </FormLabel>
                     <FormControl>
                       <Input
@@ -200,17 +205,34 @@ export function UsersActionDialog({ currentRow, open, onOpenChange }: Props) {
               />
               <FormField
                 control={form.control}
-                name="password"
+                name="age"
                 render={({ field }) => (
                   <FormItem className="grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1">
-                    <FormLabel className="col-span-2 text-right">
-                      Password
-                    </FormLabel>
+                    <FormLabel className="col-span-2 text-right">Age</FormLabel>
                     <FormControl>
-                      <PasswordInput
-                        placeholder="e.g., S3cur3P@ssw0rd"
+                      <Input
+                        placeholder="21"
                         className="col-span-4"
                         {...field}
+                        onKeyDown={(event) => {
+                          const { key, currentTarget } = event;
+                          const value = currentTarget.value;
+                          const allowedKeys = [
+                            "Backspace",
+                            "Tab",
+                            "ArrowLeft",
+                            "ArrowRight",
+                          ];
+                          if (allowedKeys.includes(key)) return;
+                          const isNumberKey = /^[1-9]$/.test(key);
+                          const isValidContinuation = /^[0-9]$/.test(key);
+                          if (value.length === 0 && !isNumberKey) {
+                            event.preventDefault();
+                          } else if (value.length > 0 && !isValidContinuation) {
+                            event.preventDefault();
+                          }
+                        }}
+                        onChange={(e) => field.onChange(Number(e.target.value))}
                       />
                     </FormControl>
                     <FormMessage className="col-span-4 col-start-3" />
@@ -219,18 +241,20 @@ export function UsersActionDialog({ currentRow, open, onOpenChange }: Props) {
               />
               <FormField
                 control={form.control}
-                name="confirmPassword"
+                name="interests"
                 render={({ field }) => (
                   <FormItem className="grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1">
                     <FormLabel className="col-span-2 text-right">
-                      Confirm Password
+                      Interests
                     </FormLabel>
                     <FormControl>
-                      <PasswordInput
-                        disabled={!isPasswordTouched}
-                        placeholder="e.g., S3cur3P@ssw0rd"
+                      <MultiSelect
                         className="col-span-4"
-                        {...field}
+                        placeholder="Select interests"
+                        options={interestOptions}
+                        defaultValue={field.value}
+                        value={field.value}
+                        onValueChange={field.onChange}
                       />
                     </FormControl>
                     <FormMessage className="col-span-4 col-start-3" />

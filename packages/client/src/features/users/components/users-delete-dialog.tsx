@@ -18,9 +18,8 @@ interface Props {
 export function UsersDeleteDialog({ open, onOpenChange, currentRow }: Props) {
   const [value, setValue] = useState("");
 
-  const handleDelete = () => {
+  const handleDeleteUser = () => {
     if (value.trim() !== currentRow.name) return;
-
     onOpenChange(false);
     showSubmittedData(currentRow, "The following user has been deleted:");
   };
@@ -29,7 +28,7 @@ export function UsersDeleteDialog({ open, onOpenChange, currentRow }: Props) {
     <ConfirmDialog
       open={open}
       onOpenChange={onOpenChange}
-      handleConfirm={handleDelete}
+      handleConfirm={handleDeleteUser}
       disabled={value.trim() !== currentRow.name}
       title={
         <span className="text-destructive">
