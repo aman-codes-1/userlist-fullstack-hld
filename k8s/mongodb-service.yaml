@@ -5,12 +5,12 @@ metadata:
     kompose.cmd: kompose convert
     kompose.version: 1.35.0 (HEAD)
   labels:
-    io.kompose.service: client
-  name: client
+    io.kompose.service: mongodb
+  name: mongodb
 spec:
   ports:
-    - name: "3001"
-      port: 3001
-      targetPort: 3001
+    - name: "27017"
+      port: 27017
+      targetPort: 27017
   selector:
-    io.kompose.service: client
+    io.kompose.service: mongodb

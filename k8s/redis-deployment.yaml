@@ -5,30 +5,25 @@ metadata:
     kompose.cmd: kompose convert
     kompose.version: 1.35.0 (HEAD)
   labels:
-    io.kompose.service: client
-  name: client
+    io.kompose.service: redis
+  name: redis
 spec:
   replicas: 5
   selector:
     matchLabels:
-      io.kompose.service: client
+      io.kompose.service: redis
   template:
     metadata:
       annotations:
         kompose.cmd: kompose convert
         kompose.version: 1.35.0 (HEAD)
       labels:
-        io.kompose.service: client
+        io.kompose.service: redis
     spec:
       containers:
-        - env:
-            - name: NEXT_APP_SERVER_URI
-              value: http://localhost:4001
-            - name: PORT
-              value: "3001"
-          image: amancodes0/userlist-fullstack-hld-client
-          name: client
+        - image: redis:latest
+          name: redis
           ports:
-            - containerPort: 3001
+            - containerPort: 6379
               protocol: TCP
       restartPolicy: Always

@@ -5,20 +5,20 @@ metadata:
     kompose.cmd: kompose convert
     kompose.version: 1.35.0 (HEAD)
   labels:
-    io.kompose.service: user-service
-  name: user-service
+    io.kompose.service: app-gateway
+  name: app-gateway
 spec:
   replicas: 5
   selector:
     matchLabels:
-      io.kompose.service: user-service
+      io.kompose.service: app-gateway
   template:
     metadata:
       annotations:
         kompose.cmd: kompose convert
         kompose.version: 1.35.0 (HEAD)
       labels:
-        io.kompose.service: user-service
+        io.kompose.service: app-gateway
     spec:
       containers:
         - env:
@@ -39,7 +39,7 @@ spec:
             - name: MONGO_URI
               value: mongodb://root:example@mongodb:27017/
             - name: SERVICE
-              value: user-service
+              value: app-gateway
             - name: USER_SERVICE_HOST
               value: user-service
             - name: USER_SERVICE_PORT
@@ -48,9 +48,9 @@ spec:
               value: redis
             - name: USER_SERVICE_REDIS_PORT
               value: "6379"
-          image: amancodes0/userlist-fullstack-hld-user-service
-          name: user-service
+          image: amancodes0/userlist-fullstack-hld-app-gateway
+          name: app-gateway
           ports:
-            - containerPort: 4003
+            - containerPort: 4001
               protocol: TCP
       restartPolicy: Always

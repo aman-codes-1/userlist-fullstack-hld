@@ -5,12 +5,12 @@ metadata:
     kompose.cmd: kompose convert
     kompose.version: 1.35.0 (HEAD)
   labels:
-    io.kompose.service: client
-  name: client
+    io.kompose.service: app-gateway
+  name: app-gateway
 spec:
   ports:
-    - name: "3001"
-      port: 3001
-      targetPort: 3001
+    - name: "4001"
+      port: 4001
+      targetPort: 4001
   selector:
-    io.kompose.service: client
+    io.kompose.service: app-gateway
