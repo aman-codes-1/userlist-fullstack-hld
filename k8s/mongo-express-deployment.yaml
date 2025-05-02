@@ -34,5 +34,5 @@ spec:
             - name: ME_CONFIG_MONGODB_SERVER
               value: mongodb
             - name: ME_CONFIG_MONGODB_URL
-              value: mongodb://root:example@mongodb:27017/?authSource=admin
+              value: mongodb://root:example@mongodb:27017/
       restartPolicy: Always

@@ -10,7 +10,7 @@ x-server-env: &server-env
   USER_SERVICE_REDIS_PORT: 6379
   CLIENT_URL: http://a7a29bab3405841518b42d403a6ace1b-1831602282.ap-south-1.elb.amazonaws.com
   ALLOWED_ORIGINS: http://localhost:3002
-  MONGO_URI: mongodb://root:example@mongodb:27017/?authSource=admin
+  MONGO_URI: mongodb://root:example@mongodb:27017/
 
 services:
   # ─── MongoDB ───
