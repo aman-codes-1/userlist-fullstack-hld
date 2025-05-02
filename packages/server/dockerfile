@@ -26,7 +26,7 @@ ENV SERVICE=${SERVICE}
 
 COPY --from=builder /usr/src/app/dist ./dist
 COPY package*.json ./
-RUN npm install --only=production
+RUN npm install --omit=dev
 
 EXPOSE ${PORT}
 EXPOSE ${PORT_2}
