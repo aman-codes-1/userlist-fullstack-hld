@@ -1,0 +1,31 @@
+# Node modules (don't copy host dependencies)
+node_modules
+npm-debug.log
+
+# Git & local dev
+.git
+.gitignore
+
+# Build output
+.next
+dist
+
+# OS/system files
+.DS_Store
+*.log
+*.pem
+*.env
+.env.*  # If using env splits like .env.local
+
+# Docker & compose files
+Dockerfile
+docker-compose.yml
+
+# Testing & coverage
+coverage
+*.test.*
+__tests__/
+jest.config.*
+
+# Docs / misc
+*.md
