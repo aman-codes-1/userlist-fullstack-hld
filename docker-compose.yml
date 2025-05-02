@@ -8,13 +8,9 @@ x-server-env: &server-env
   USER_SERVICE_PORT: 4003
   USER_SERVICE_REDIS_HOST: redis
   USER_SERVICE_REDIS_PORT: 6379
-  CLIENT_URL: http://localhost:3001
+  CLIENT_URL: http://a53fac9f227d94ea58a2c90cf3690f64-994963766.ap-south-1.elb.amazonaws.com
   ALLOWED_ORIGINS: http://localhost:3002
   MONGO_URI: mongodb://root:example@mongodb:27017/
-
-x-client-env: &client-env
-  PORT: 3001
-  NEXT_APP_SERVER_URI: http://localhost:4001
 
 services:
   # ─── MongoDB ───
@@ -118,9 +114,8 @@ services:
       context: ./packages/client
       dockerfile: Dockerfile
       args:
-        PORT: 3001
-    environment:
-      <<: *client-env
+       PORT: 3001
+       NEXT_PUBLIC_API_BASE_URL: http://af36bbf6110764490a9e3946e72025ae-1797436269.ap-south-1.elb.amazonaws.com
     ports:
       - "3001:3001"
     depends_on:
