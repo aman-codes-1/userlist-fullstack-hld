@@ -1,20 +1,36 @@
 # User List Full Stack Application High Level Design
 
-## Live Links
+This is a Full Stack User List CRUD application with a High Level Design where we can view, add, update, or delete a user.
 
-This is a Full Stack User List CRUD application with a High Level Design mainly consisting of:
+## Project Infrastructure Overview
 
-1. [Next.js](https://github.com/vercel/next.js) Frontend Service:
-<http://a7a29bab3405841518b42d403a6ace1b-1831602282.ap-south-1.elb.amazonaws.com>
-2. [NestJs](https://github.com/nestjs/nest) Backend [Microservices](https://docs.nestjs.com/microservices/basics) - a [Hybrid Application](https://docs.nestjs.com/faq/hybrid-application):
-   - App Gateway (BFF - Backend for Frontend - Serves REST to Client)
-<http://a9cd3e083c24b4bdbbf01fa99bfa1dd5-110987320.ap-south-1.elb.amazonaws.com>
-   - API Gateway (Forwards Requests to Microservices):
-<http://a7026c6c9eb8840949445c517e7dc7ee-1393716639.ap-south-1.elb.amazonaws.com>
-   - User Microservice (Connected Microservice):
-<http://ae5b169b8ed3c4c698cc94ad3f2767dd-1907489297.ap-south-1.elb.amazonaws.com>
-3. [MongoDB](https://github.com/mongodb/mongo) Database:
-<http://a03b94bbbb03e4d6a91693acfe8b3377-1449761238.ap-south-1.elb.amazonaws.com>
+## 1. [Next.js](https://github.com/vercel/next.js) Frontend Service
+
+🔗 **Live URL:** <http://a7a29bab3405841518b42d403a6ace1b-1831602282.ap-south-1.elb.amazonaws.com>
+
+---
+
+## 2. [NestJS](https://github.com/nestjs/nest) Backend Microservices
+
+A [Hybrid Application](https://docs.nestjs.com/faq/hybrid-application) using [Microservices](https://docs.nestjs.com/microservices/basics):
+
+- ### App Gateway (BFF - Backend for Frontend)
+
+  🔗 **Live URL:** <http://a9cd3e083c24b4bdbbf01fa99bfa1dd5-110987320.ap-south-1.elb.amazonaws.com>
+
+- ### API Gateway (Request Router to Microservices)
+
+  🔗 **Live URL:** <http://a7026c6c9eb8840949445c517e7dc7ee-1393716639.ap-south-1.elb.amazonaws.com>
+
+- ### User Microservice
+
+  🔗 **Live URL:** <http://ae5b169b8ed3c4c698cc94ad3f2767dd-1907489297.ap-south-1.elb.amazonaws.com>
+
+---
+
+## 3. [MongoDB](https://github.com/mongodb/mongo) Database
+
+🔗 **Live URL:** <http://a03b94bbbb03e4d6a91693acfe8b3377-1449761238.ap-south-1.elb.amazonaws.com>
 
 ## Advantages
 
