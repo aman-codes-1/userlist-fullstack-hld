@@ -10,6 +10,7 @@ FROM node:18-alpine
 WORKDIR /app
 ENV NODE_ENV=production
 ENV PORT=${PORT}
+ENV NEXT_PUBLIC_APP_SERVER_URI=$NEXT_PUBLIC_APP_SERVER_URI
 
 COPY --from=builder /app/.next .next
 COPY --from=builder /app/public ./public
