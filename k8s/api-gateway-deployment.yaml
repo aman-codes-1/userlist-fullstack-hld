@@ -38,7 +38,7 @@ spec:
             - name: APP_GATEWAY_PORT
               value: "4001"
             - name: CLIENT_URL
-              value: http://a53fac9f227d94ea58a2c90cf3690f64-994963766.ap-south-1.elb.amazonaws.com
+              value: http://a7a29bab3405841518b42d403a6ace1b-1831602282.ap-south-1.elb.amazonaws.com
             - name: MONGO_URI
               value: mongodb://root:example@mongodb:27017/?authSource=admin
             - name: SERVICE
