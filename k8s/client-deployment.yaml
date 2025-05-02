@@ -23,7 +23,7 @@ spec:
       containers:
         - env:
             - name: NEXT_APP_SERVER_URI
-              value: http://localhost:4001
+              value: http://af36bbf6110764490a9e3946e72025ae-1797436269.ap-south-1.elb.amazonaws.com
             - name: PORT
               value: "3001"
           image: amancodes0/userlist-fullstack-hld-client
