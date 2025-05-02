@@ -2,7 +2,7 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-const APP_GATEWAY_HOST = '127.0.0.1';
+const APP_GATEWAY_HOST = process.env.APP_GATEWAY_HOST || '127.0.0.1';
 const APP_GATEWAY_PORT = process.env.PORT || 4001;
 const API_GATEWAY_HOST = process.env.API_GATEWAY_HOST || '127.0.0.1';
 const API_GATEWAY_PORT = process.env.API_GATEWAY_PORT || 4000;
