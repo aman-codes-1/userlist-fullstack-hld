@@ -6,7 +6,11 @@ import { CustomValidationPipe } from './custom-validation.pipe';
 async function bootstrap() {
   const app = await NestFactory.create(AppGatewayModule);
   const configService = app.get(ConfigService);
-  const APP_GATEWAY_PORT = configService.get<number>('APP_GATEWAY_PORT');
+  const APP_GATEWAY_HOST = configService.get<string>(
+    'APP_GATEWAY_HOST',
+    '0.0.0.0',
+  );
+  const APP_GATEWAY_PORT = configService.get<number>('APP_GATEWAY_PORT', 4001);
   const CLIENT_URL = configService.get<string>('CLIENT_URL');
   const ALLOWED_ORIGINS = configService.get<string>('ALLOWED_ORIGINS');
   const ALLOWED_ORIGIN_ARR = ALLOWED_ORIGINS
@@ -21,6 +25,6 @@ async function bootstrap() {
     methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
   });
   app.useGlobalPipes(new CustomValidationPipe());
-  await app.listen(APP_GATEWAY_PORT ?? 4001);
+  await app.listen(APP_GATEWAY_PORT, APP_GATEWAY_HOST);
 }
 bootstrap();
