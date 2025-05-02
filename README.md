@@ -1,16 +1,18 @@
 # User List Full Stack Application High Level Design
 
-This is a Full Stack User List CRUD application with a High Level Design where we can view, add, update, or delete a user.
+This is a Full Stack User List CRUD Application with a High Level Design Architecture where we can view, add, update, or delete a user.
+
+![User List](user_list.png)
 
 ## Project Infrastructure Overview
 
-## 1. [Next.js](https://github.com/vercel/next.js) Frontend Service
+## 1. [Next.js](https://github.com/vercel/next.js) Frontend
 
 🔗 **Live URL:** <http://a7a29bab3405841518b42d403a6ace1b-1831602282.ap-south-1.elb.amazonaws.com>
 
 ---
 
-## 2. [NestJS](https://github.com/nestjs/nest) Backend Microservices
+## 2. [NestJS](https://github.com/nestjs/nest) Backend
 
 A [Hybrid Application](https://docs.nestjs.com/faq/hybrid-application) using [Microservices](https://docs.nestjs.com/microservices/basics):
 
@@ -32,6 +34,8 @@ A [Hybrid Application](https://docs.nestjs.com/faq/hybrid-application) using [Mi
 
 🔗 **Live URL:** <http://a03b94bbbb03e4d6a91693acfe8b3377-1449761238.ap-south-1.elb.amazonaws.com>
 
+---
+
 ## Advantages
 
 1. Monorepo to streamline code organization
@@ -40,7 +44,7 @@ A [Hybrid Application](https://docs.nestjs.com/faq/hybrid-application) using [Mi
 4. Deployed Docker images of microservices on [Docker Hub](https://www.docker.com/products/docker-hub)
 5. [Kubernetes Services, Load Balancing, and Networking](https://kubernetes.io/docs/concepts/services-networking)
 
-## Deployment
+## Deployment Using
 
 1. [Docker](https://github.com/docker/getting-started)
 2. [Kubernetes](https://github.com/kubernetes/kubernetes)
@@ -53,7 +57,7 @@ A [Hybrid Application](https://docs.nestjs.com/faq/hybrid-application) using [Mi
 3. [Install Docker](https://docs.docker.com/engine/install)
 4. [Install MongoDB](https://www.mongodb.com/docs/manual/installation)
 5. [Install Redis](https://redis.io/docs/latest/operate/oss_and_stack/install/archive/install-redis)
-6. [Kubernetes CLI (kubectl)](https://kubernetes.io/docs/tasks/tools/)
+6. [Install Kubernetes CLI (kubectl)](https://kubernetes.io/docs/tasks/tools/)
 
 ## Installation of the application
 
