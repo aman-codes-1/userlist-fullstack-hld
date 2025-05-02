@@ -1,56 +1,52 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.version: 1.35.0 (HEAD)
-  labels:
-    io.kompose.service: user-service
   name: user-service
+  labels:
+    app: user-service
+    io.kompose.service: user-service
 spec:
   replicas: 2
   selector:
     matchLabels:
-      io.kompose.service: user-service
+      app: user-service
   template:
     metadata:
-      annotations:
-        kompose.cmd: kompose convert
-        kompose.version: 1.35.0 (HEAD)
       labels:
+        app: user-service
         io.kompose.service: user-service
     spec:
       containers:
-        - env:
+        - name: user-service
+          image: amancodes0/userlist-fullstack-hld-user-service
+          ports:
+            - containerPort: 4003
+              protocol: TCP
+          env:
             - name: ALLOWED_ORIGINS
               value: http://localhost:3002
             - name: API_GATEWAY_HOST
-              value: "0.0.0.0"
+              value: api-gateway
             - name: API_GATEWAY_PORT
               value: "4000"
             - name: API_GATEWAY_PORT_2
               value: "4002"
             - name: APP_GATEWAY_HOST
-              value: "0.0.0.0"
+              value: app-gateway
             - name: APP_GATEWAY_PORT
               value: "4001"
             - name: CLIENT_URL
               value: http://a53fac9f227d94ea58a2c90cf3690f64-994963766.ap-south-1.elb.amazonaws.com
             - name: MONGO_URI
-              value: mongodb://root:example@mongodb:27017/
+              value: mongodb://root:example@mongodb:27017/?authSource=admin
             - name: SERVICE
               value: user-service
             - name: USER_SERVICE_HOST
-              value: "0.0.0.0"
+              value: user-service
             - name: USER_SERVICE_PORT
               value: "4003"
             - name: USER_SERVICE_REDIS_HOST
               value: redis
             - name: USER_SERVICE_REDIS_PORT
               value: "6379"
-          image: amancodes0/userlist-fullstack-hld-user-service
-          name: user-service
-          ports:
-            - containerPort: 4003
-              protocol: TCP
       restartPolicy: Always

@@ -1,34 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.version: 1.35.0 (HEAD)
-  labels:
-    io.kompose.service: client
   name: client
+  labels:
+    app: client
+    io.kompose.service: client
 spec:
   replicas: 2
   selector:
     matchLabels:
-      io.kompose.service: client
+      app: client
   template:
     metadata:
-      annotations:
-        kompose.cmd: kompose convert
-        kompose.version: 1.35.0 (HEAD)
       labels:
+        app: client
         io.kompose.service: client
     spec:
       containers:
-        - env:
+        - name: client
+          image: amancodes0/userlist-fullstack-hld-client
+          ports:
+            - containerPort: 3001
+              protocol: TCP
+          env:
             - name: NEXT_PUBLIC_API_BASE_URL
               value: http://ac330b4958abf4cdaaf1b6e2d69058a0-2004423125.ap-south-1.elb.amazonaws.com
             - name: PORT
               value: "3001"
-          image: amancodes0/userlist-fullstack-hld-client
-          name: client
-          ports:
-            - containerPort: 3001
-              protocol: TCP
       restartPolicy: Always

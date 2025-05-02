@@ -1,16 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.version: 1.35.0 (HEAD)
-  labels:
-    io.kompose.service: app-gateway
   name: app-gateway
+  labels:
+    app: app-gateway
+    io.kompose.service: app-gateway
 spec:
+  selector:
+    app: app-gateway
   ports:
-    - name: "4001"
+    - name: http
       port: 4001
       targetPort: 4001
-  selector:
-    io.kompose.service: app-gateway

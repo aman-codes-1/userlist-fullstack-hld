@@ -1,41 +1,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.version: 1.35.0 (HEAD)
-  labels:
-    io.kompose.service: mongodb
   name: mongodb
+  labels:
+    app: mongodb
+    io.kompose.service: mongodb
 spec:
   replicas: 2
   selector:
     matchLabels:
-      io.kompose.service: mongodb
+      app: mongodb
   strategy:
     type: Recreate
   template:
     metadata:
-      annotations:
-        kompose.cmd: kompose convert
-        kompose.version: 1.35.0 (HEAD)
       labels:
+        app: mongodb
         io.kompose.service: mongodb
     spec:
       containers:
-        - env:
-            - name: MONGO_INITDB_ROOT_PASSWORD
-              value: example
-            - name: MONGO_INITDB_ROOT_USERNAME
-              value: root
+        - name: mongodb
           image: mongo:latest
-          name: mongodb
           ports:
             - containerPort: 27017
-              protocol: TCP
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              value: root
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              value: example
           volumeMounts:
-            - mountPath: /data/db
-              name: mongo-data
+            - name: mongo-data
+              mountPath: /data/db
       restartPolicy: Always
       volumes:
         - name: mongo-data
