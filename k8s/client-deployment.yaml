@@ -23,7 +23,7 @@ spec:
       containers:
         - env:
             - name: NEXT_PUBLIC_API_BASE_URL
-              value: http://af36bbf6110764490a9e3946e72025ae-1797436269.ap-south-1.elb.amazonaws.com
+              value: http://ac330b4958abf4cdaaf1b6e2d69058a0-2004423125.ap-south-1.elb.amazonaws.com
             - name: PORT
               value: "3001"
           image: amancodes0/userlist-fullstack-hld-client
