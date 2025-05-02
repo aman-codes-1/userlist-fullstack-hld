@@ -2,7 +2,7 @@
 
 This is a Full Stack User List CRUD Application with a High Level Design Architecture where we can view, add, update, or delete a user.
 
-![User List](user_list.png)
+![User List](assets/user_list.png)
 
 ## Project Infrastructure Overview
 
@@ -149,3 +149,24 @@ $ docker logs <CONTAINER_ID>
 # Enter the container (In alpine, use sh because bash is not installed by default)
 $ docker exec -it <CONTAINER_ID> /bin/sh
 ```
+
+## Docker Images
+
+![Docker Images](assets/docker_images.png)
+
+## Docker Containers
+
+![Docker Containers](assets/docker_containers.png)
+
+## Docker Volumes
+
+![Docker Volumes](assets/docker_volumes.png)
+
+## Pushed Docker Images on Docker Hub
+
+![Pushed Docker Images](docker_hub_images.png)
+
+userlist-fullstack-hld-client: <https://hub.docker.com/r/amancodes0/userlist-fullstack-hld-client>
+userlist-fullstack-hld-app-gateway: <https://hub.docker.com/r/amancodes0/userlist-fullstack-hld-app-gateway>
+userlist-fullstack-hld-api-gateway: <https://hub.docker.com/r/amancodes0/userlist-fullstack-hld-api-gateway>
+userlist-fullstack-hld-user-service: <https://hub.docker.com/r/amancodes0/userlist-fullstack-hld-user-service>
