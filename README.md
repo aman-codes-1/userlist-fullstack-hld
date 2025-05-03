@@ -148,7 +148,7 @@ $ docker exec -it <CONTAINER_ID> /bin/sh
 
 ## Docker Files
 
-**Docker Compose:** [docker-compose.yaml](docker-compose.yaml)
+**Docker Compose:** [docker-compose.yml](docker-compose.yml)
 
 **Client:** [dockerfile](packages/client/dockerfile)
 
