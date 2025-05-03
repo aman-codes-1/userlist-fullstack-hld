@@ -207,20 +207,35 @@ $ docker exec -it <CONTAINER_ID> /bin/sh
 *Api Gateway Deployment:* [api-gateway-deployment.yaml](k8s/api-gateway-deployment.yaml)
 
 *Api Gateway Service:* [api-gateway-service.yaml](k8s/api-gateway-service.yaml)
+
 *App Gateway Load Balancer:* [api-gateway-loadbalancer.yaml](k8s/api-gateway-loadbalancer.yaml)
+
 *User Service Deployment:* [user-service-deployment.yaml](k8s/user-service-deployment.yaml)
+
 *User Service Service:* [user-service-service.yaml](k8s/user-service-service.yaml)
+
 *User Service Load Balancer:* [user-service-loadbalancer.yaml](k8s/user-service-loadbalancer.yaml)
+
 *Client Deployment:* [client-deployment.yaml](k8s/client-deployment.yaml)
+
 *Client Service:* [client-service.yaml](k8s/client-service.yaml)
+
 *Client Load Balancer:* [client-loadbalancer.yaml](k8s/client-loadbalancer.yaml)
+
 *MongoDB Deployment:* [mongodb-deployment.yaml](k8s/mongodb-deployment.yaml)
+
 *MongoDB Service:* [mongodb-service.yaml](k8s/mongodb-service.yaml)
+
 *Mongo Express Deployment:* [mongo-express-deployment.yaml](k8s/mongo-express-deployment.yaml)
+
 *Mongo Express Service:* [mongo-express-service.yaml](k8s/mongo-express-service.yaml)
+
 *Mongo Express Load Balancer:* [mongo-express-loadbalancer.yaml](k8s/mongo-express-loadbalancer.yaml)
+
 *Mongo Data PVC:* [mongo-data-persistentvolumeclaim.yaml](k8s/mongo-data-persistentvolumeclaim.yaml)
+
 *Redis Deployment:* [redis-deployment.yaml](k8s/redis-deployment.yaml)
+
 *Redis Service:* [redis-service.yaml](k8s/redis-service.yaml)
 
 ## kubectl commands
