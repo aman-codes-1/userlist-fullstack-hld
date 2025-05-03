@@ -148,11 +148,11 @@ $ docker exec -it <CONTAINER_ID> /bin/sh
 
 ## Docker Files
 
-[docker-compose.yaml](docker-compose.yaml)
+**Docker Compose:** [docker-compose.yaml](docker-compose.yaml)
 
-[Client dockerfile](packages/client/dockerfile)
+**Client:** [dockerfile](packages/client/dockerfile)
 
-[Server dockerfile](packages/server/dockerfile)
+**Server:** [dockerfile](packages/server/dockerfile)
 
 ## Docker Images
 
