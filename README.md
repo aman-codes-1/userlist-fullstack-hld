@@ -36,6 +36,8 @@ A [Hybrid Application](https://docs.nestjs.com/faq/hybrid-application) using [Mi
 
 ---
 
+![Diagram](assets/diagram.png)
+
 ## Advantages
 
 1. Monorepo to streamline code organization
