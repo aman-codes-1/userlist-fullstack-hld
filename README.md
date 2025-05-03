@@ -149,7 +149,9 @@ $ docker exec -it <CONTAINER_ID> /bin/sh
 ## Docker Files
 
 [docker-compose.yaml](docker-compose.yaml)
+
 [Client dockerfile](packages/client/dockerfile)
+
 [Server dockerfile](packages/server/dockerfile)
 
 ## Docker Images
@@ -198,11 +200,11 @@ $ docker exec -it <CONTAINER_ID> /bin/sh
 
 ## Kubernetes Manifest Files (.yaml)
 
-*App Gateway Deployment:* [app-gateway-deployment.yaml](k8s/app-gateway-deployment.yaml)
+**App Gateway Deployment:** [app-gateway-deployment.yaml](k8s/app-gateway-deployment.yaml)
 
-*App Gateway Service:* [app-gateway-service.yaml](k8s/app-gateway-service.yaml)
+**App Gateway Service:** [app-gateway-service.yaml](k8s/app-gateway-service.yaml)
 
-*App Gateway Load Balancer:* [app-gateway-loadbalancer.yaml](k8s/app-gateway-loadbalancer.yaml)
+**App Gateway Load Balancer:** [app-gateway-loadbalancer.yaml](k8s/app-gateway-loadbalancer.yaml)
 
 *Api Gateway Deployment:* [api-gateway-deployment.yaml](k8s/api-gateway-deployment.yaml)
 
