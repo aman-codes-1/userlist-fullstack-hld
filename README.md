@@ -1,6 +1,6 @@
 # User List Full Stack Application High Level Design
 
-This is a Full Stack User List CRUD Application with a High Level Design Architecture where we can view, add, update, or delete a user.
+This is a Full Stack User List CRUD Application with a High Level Design and a Scalable Microservice Architecture where we can view, add, update, or delete a user.
 
 ![User List](assets/user_list.png)
 
@@ -20,11 +20,11 @@ A [Hybrid Application](https://docs.nestjs.com/faq/hybrid-application) using [Mi
 
   🔗 **Live URL:** <http://a9cd3e083c24b4bdbbf01fa99bfa1dd5-110987320.ap-south-1.elb.amazonaws.com>
 
-- ### API Gateway (Request Router to Microservices)
+- ### API Gateway (Service Mesh - TCP Transport)
 
   🔗 **Live URL:** <http://a7026c6c9eb8840949445c517e7dc7ee-1393716639.ap-south-1.elb.amazonaws.com>
 
-- ### User Microservice
+- ### User Microservice (Event-Driven via Redis - Pub/Sub Enabled)
 
   🔗 **Live URL:** <http://ae5b169b8ed3c4c698cc94ad3f2767dd-1907489297.ap-south-1.elb.amazonaws.com>
 
