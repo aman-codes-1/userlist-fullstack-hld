@@ -194,12 +194,18 @@ $ docker exec -it <CONTAINER_ID> /bin/sh
 
   <https://hub.docker.com/r/amancodes0/userlist-fullstack-hld-user-service>
 
+---
+
 ## Kubernetes Manifest Files (.yaml)
 
 *App Gateway Deployment:* [app-gateway-deployment.yaml](k8s/app-gateway-deployment.yaml)
+
 *App Gateway Service:* [app-gateway-service.yaml](k8s/app-gateway-service.yaml)
+
 *App Gateway Load Balancer:* [app-gateway-loadbalancer.yaml](k8s/app-gateway-loadbalancer.yaml)
+
 *Api Gateway Deployment:* [api-gateway-deployment.yaml](k8s/api-gateway-deployment.yaml)
+
 *Api Gateway Service:* [api-gateway-service.yaml](k8s/api-gateway-service.yaml)
 *App Gateway Load Balancer:* [api-gateway-loadbalancer.yaml](k8s/api-gateway-loadbalancer.yaml)
 *User Service Deployment:* [user-service-deployment.yaml](k8s/user-service-deployment.yaml)
@@ -251,6 +257,6 @@ kubectl delete pods --all
 kubectl delete all --all
 ```
 
-## AWS EKS (Amazon Elastic Kubernetes Service) Deployments, Services, and Pods
+## AWS EKS (Elastic Kubernetes Service) Deployments, Services, and Pods
 
 ![kubectl](assets/kubectl.png)
