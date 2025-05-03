@@ -135,11 +135,7 @@ $ docker run -it -p 3000:3000 <IMAGE_NAME>:latest
 $ docker login
 $ docker tag <IMAGE_NAME>:latest <DOCKER_HUB_USER_NAME>/<IMAGE_NAME>:latest
 $ docker push <DOCKER_HUB_USER_NAME>/<IMAGE_NAME>
-```
 
-## Other useful Docker commands
-
-```sh
 # Get the container ID
 $ docker ps
 
@@ -149,6 +145,12 @@ $ docker logs <CONTAINER_ID>
 # Enter the container (In alpine, use sh because bash is not installed by default)
 $ docker exec -it <CONTAINER_ID> /bin/sh
 ```
+
+## Docker Files
+
+[docker-compose.yaml](docker-compose.yaml)
+[Client dockerfile](packages/client/dockerfile)
+[Server dockerfile](packages/server/dockerfile)
 
 ## Docker Images
 
@@ -191,3 +193,64 @@ $ docker exec -it <CONTAINER_ID> /bin/sh
   *amancodes0/userlist-fullstack-hld-user-service*
 
   <https://hub.docker.com/r/amancodes0/userlist-fullstack-hld-user-service>
+
+## Kubernetes Manifest Files (.yaml)
+
+*App Gateway Deployment:* [app-gateway-deployment.yaml](k8s/app-gateway-deployment.yaml)
+*App Gateway Service:* [app-gateway-service.yaml](k8s/app-gateway-service.yaml)
+*App Gateway Load Balancer:* [app-gateway-loadbalancer.yaml](k8s/app-gateway-loadbalancer.yaml)
+*Api Gateway Deployment:* [api-gateway-deployment.yaml](k8s/api-gateway-deployment.yaml)
+*Api Gateway Service:* [api-gateway-service.yaml](k8s/api-gateway-service.yaml)
+*App Gateway Load Balancer:* [api-gateway-loadbalancer.yaml](k8s/api-gateway-loadbalancer.yaml)
+*User Service Deployment:* [user-service-deployment.yaml](k8s/user-service-deployment.yaml)
+*User Service Service:* [user-service-service.yaml](k8s/user-service-service.yaml)
+*User Service Load Balancer:* [user-service-loadbalancer.yaml](k8s/user-service-loadbalancer.yaml)
+*Client Deployment:* [client-deployment.yaml](k8s/client-deployment.yaml)
+*Client Service:* [client-service.yaml](k8s/client-service.yaml)
+*Client Load Balancer:* [client-loadbalancer.yaml](k8s/client-loadbalancer.yaml)
+*MongoDB Deployment:* [mongodb-deployment.yaml](k8s/mongodb-deployment.yaml)
+*MongoDB Service:* [mongodb-service.yaml](k8s/mongodb-service.yaml)
+*Mongo Express Deployment:* [mongo-express-deployment.yaml](k8s/mongo-express-deployment.yaml)
+*Mongo Express Service:* [mongo-express-service.yaml](k8s/mongo-express-service.yaml)
+*Mongo Express Load Balancer:* [mongo-express-loadbalancer.yaml](k8s/mongo-express-loadbalancer.yaml)
+*Mongo Data PVC:* [mongo-data-persistentvolumeclaim.yaml](k8s/mongo-data-persistentvolumeclaim.yaml)
+*Redis Deployment:* [redis-deployment.yaml](k8s/redis-deployment.yaml)
+*Redis Service:* [redis-service.yaml](k8s/redis-service.yaml)
+
+## kubectl commands
+
+```bash
+# Create or apply changes to resources
+$ kubectl apply -f app-gateway-deployment.yaml
+
+# Get all services
+kubectl get svc
+
+# Get all deployments
+kubectl get deployments
+
+# Restart deployment
+kubectl rollout restart deployment <DEPLOYMENT_NAME>
+
+# Get all pods
+kubectl get pods
+
+# Get logs of pod
+kubectl logs <pod-name>
+
+# Stream the logs of pod
+kubectl logs -f <pod-name>
+
+# Delete all deployments
+kubectl delete deployments --all
+
+# Delete all pods
+kubectl delete pods --all
+
+# Delete all resources
+kubectl delete all --all
+```
+
+## AWS EKS (Amazon Elastic Kubernetes Service) Deployments, Services, and Pods
+
+![kubectl](assets/kubectl.png)
