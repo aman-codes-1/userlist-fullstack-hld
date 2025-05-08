@@ -1,14 +1,14 @@
 x-server-env: &server-env
   APP_GATEWAY_HOST: 0.0.0.0
   APP_GATEWAY_PORT: 4001
-  API_GATEWAY_HOST: api-gateway
+  API_GATEWAY_HOST: 0.0.0.0
   API_GATEWAY_PORT: 4000
   API_GATEWAY_PORT_2: 4002
   USER_SERVICE_HOST: user-service
   USER_SERVICE_PORT: 4003
   USER_SERVICE_REDIS_HOST: redis
   USER_SERVICE_REDIS_PORT: 6379
-  CLIENT_URL: http://a7a29bab3405841518b42d403a6ace1b-1831602282.ap-south-1.elb.amazonaws.com
+  CLIENT_URL: http://localhost:3001
   ALLOWED_ORIGINS: http://localhost:3002
   MONGO_URI: mongodb://root:example@mongodb:27017/
 
@@ -115,7 +115,7 @@ services:
       dockerfile: Dockerfile
       args:
        PORT: 3001
-       NEXT_PUBLIC_API_BASE_URL: http://a9cd3e083c24b4bdbbf01fa99bfa1dd5-110987320.ap-south-1.elb.amazonaws.com
+       NEXT_PUBLIC_API_BASE_URL: http://localhost:4001
     ports:
       - "3001:3001"
     depends_on:
