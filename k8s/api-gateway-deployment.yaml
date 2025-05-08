@@ -28,7 +28,7 @@ spec:
             - name: ALLOWED_ORIGINS
               value: http://localhost:3002
             - name: API_GATEWAY_HOST
-              value: 0.0.0.0
+              value: api-gateway
             - name: API_GATEWAY_PORT
               value: "4000"
             - name: API_GATEWAY_PORT_2
