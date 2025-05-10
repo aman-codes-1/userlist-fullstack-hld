@@ -6,7 +6,14 @@ import { UserServiceModule } from './user-service.module';
 async function bootstrap() {
   const app = await NestFactory.create(UserServiceModule);
   const configService = app.get(ConfigService);
-  const USER_SERVICE_PORT = configService.get<number>('USER_SERVICE_PORT');
+  const USER_SERVICE_PORT = configService.get<number>(
+    'USER_SERVICE_PORT',
+    4003,
+  );
+  const USER_SERVICE_HOST = configService.get<string>(
+    'USER_SERVICE_HOST',
+    '0.0.0.0',
+  );
   const USER_SERVICE_REDIS_HOST = configService.get<string>(
     'USER_SERVICE_REDIS_HOST',
   );
@@ -23,6 +30,6 @@ async function bootstrap() {
   });
 
   await app.startAllMicroservices();
-  await app.listen(USER_SERVICE_PORT ?? 4003);
+  await app.listen(USER_SERVICE_PORT, USER_SERVICE_HOST);
 }
 bootstrap();
