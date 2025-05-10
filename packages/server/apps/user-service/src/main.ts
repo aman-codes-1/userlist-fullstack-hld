@@ -10,10 +10,6 @@ async function bootstrap() {
     'USER_SERVICE_PORT',
     4003,
   );
-  const USER_SERVICE_HOST = configService.get<string>(
-    'USER_SERVICE_HOST',
-    '0.0.0.0',
-  );
   const USER_SERVICE_REDIS_HOST = configService.get<string>(
     'USER_SERVICE_REDIS_HOST',
   );
@@ -30,6 +26,6 @@ async function bootstrap() {
   });
 
   await app.startAllMicroservices();
-  await app.listen(USER_SERVICE_PORT, USER_SERVICE_HOST);
+  await app.listen(USER_SERVICE_PORT, '0.0.0.0');
 }
 bootstrap();
