@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gateway
+  labels:
+    app: api-gateway
+    io.kompose.service: api-gateway
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api-gateway
+  template:
+    metadata:
+      labels:
+        app: api-gateway
+        io.kompose.service: api-gateway
+    spec:
+      containers:
+        - name: api-gateway
+          image: amancodes0/userlist-fullstack-hld-api-gateway
+          ports:
+            - containerPort: 4000
+              protocol: TCP
+            - containerPort: 4002
+              protocol: TCP
+          env:
+            - name: ALLOWED_ORIGINS
+              value: http://localhost:3002
+            - name: API_GATEWAY_HOST
+              value: 'api-gateway'
+            - name: API_GATEWAY_PORT
+              value: "4000"
+            - name: API_GATEWAY_PORT_2
+              value: "4002"
+            - name: APP_GATEWAY_PORT
+              value: "4001"
+            - name: CLIENT_URL
+              value: http://a7a29bab3405841518b42d403a6ace1b-1831602282.ap-south-1.elb.amazonaws.com
+            - name: MONGO_URI
+              value: mongodb://root:example@mongodb:27017/
+            - name: SERVICE
+              value: api-gateway
+            - name: USER_SERVICE_PORT
+              value: "4003"
+            - name: USER_SERVICE_REDIS_HOST
+              value: redis
+            - name: USER_SERVICE_REDIS_PORT
+              value: "6379"
+      restartPolicy: Always

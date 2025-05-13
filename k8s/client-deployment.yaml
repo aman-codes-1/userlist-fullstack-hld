@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client
+  labels:
+    app: client
+    io.kompose.service: client
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: client
+  template:
+    metadata:
+      labels:
+        app: client
+        io.kompose.service: client
+    spec:
+      containers:
+        - name: client
+          image: amancodes0/userlist-fullstack-hld-client
+          ports:
+            - containerPort: 3001
+              protocol: TCP
+          env:
+            - name: NEXT_PUBLIC_API_BASE_URL
+              value: http://a9cd3e083c24b4bdbbf01fa99bfa1dd5-110987320.ap-south-1.elb.amazonaws.com
+            - name: PORT
+              value: "3001"
+      restartPolicy: Always

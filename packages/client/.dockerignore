@@ -1,0 +1,27 @@
+# Dependencies
+node_modules
+.next
+out
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# OS & Editor
+.DS_Store
+*.swp
+*.swo
+
+# Git
+.git
+.gitignore
+
+# Testing
+coverage
+*.lcov
+
+# Env files (optional)
+.env
+.env.local
+.env.*.local
