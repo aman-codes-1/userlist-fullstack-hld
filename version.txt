@@ -1,1 +1,1 @@
-Displayed version: 1.0
+Displayed version: 2.0
