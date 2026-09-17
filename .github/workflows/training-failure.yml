@@ -1,0 +1,17 @@
+name: Training Failure Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  training-failure:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Show training message
+        run: echo "Starting harmless training workflow"
+
+      - name: Deliberate training failure
+        run: |
+          echo "Deliberate training failure: expected sample file was not found"
+          exit 1
