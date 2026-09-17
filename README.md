@@ -8,6 +8,13 @@ This is a Full Stack User List CRUD Application with a High Level Design and a S
 
 Output label: Users
 
+## Usage
+
+Start the frontend development server:
+
+```bash
+npm run dev
+
 ## Project Infrastructure Overview
 
 ## 1. [Next.js](https://github.com/vercel/next.js) Frontend
