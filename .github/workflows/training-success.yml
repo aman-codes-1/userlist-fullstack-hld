@@ -1,0 +1,23 @@
+name: Training Success Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  training-success:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run sample check
+        run: |
+          echo "Training workflow completed successfully"
+          echo "Sample artifact generated" > sample-result.txt
+
+      - name: Upload sample artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sample-result
+          path: sample-result.txt
