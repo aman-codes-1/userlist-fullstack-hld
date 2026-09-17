@@ -65,18 +65,18 @@ A [Hybrid Application](https://docs.nestjs.com/faq/hybrid-application) using [Mi
 ## Installation of the application
 
 ```bash
-$ git clone https://github.com/aman-codes-1/userlist-fullstack-hld.git
-$ cd userlist-fullstack-hld.git
+git clone https://github.com/aman-codes-1/userlist-fullstack-hld.git
+cd userlist-fullstack-hld
 
 #Frontend
-$ cd packages/client
-$ npm install
-$ cd ../..
+cd packages/client
+npm install
+cd ../..
 
 #Backend
-$ cd packages/server
-$ npm install
-$ cd ../..
+cd packages/server
+npm install
+cd ../..
 ```
 
 ## Running the application using node server (the normal way)
@@ -84,69 +84,69 @@ $ cd ../..
 ```bash
 # Backend in packages/server directory
 # start: development
-$ npm run start:dev
+npm run start:dev
 or
-$ nest start --watch
+nest start --watch
 
 # Debug/watch
-$ npm run start:debug
+npm run start:debug
 
 # build: production
-$ npm run build
+npm run build
 or
-$ nest build
+nest build
 
 # start: prod
-$ npm run start:prod
+npm run start:prod
 
 # Frontend in packages/client directory
 # development
-$ npm run dev
+npm run dev
 or
-$ next dev
+next dev
 
 # build: production
-$ npm run build
+npm run build
 or
-$ next build
+next build
 
 # start: production
-$ npm start
+npm start
 or
-$ next start
+next start
 ```
 
 ## Setting up the application for use with Docker & Docker Compose
 
 ```bash
 # Build the images with docker-compose (all at once)
-$ docker-compose build
+docker-compose build
 
 # Run the images
-$ docker-compose up -d
+docker-compose up -d
 
 # or Build and run (all at once)
-$ docker-compose up --build
+docker-compose up --build
 
 # or Build the image (one by one)
-$ docker build -t <IMAGE_NAME>:latest
+docker build -t <IMAGE_NAME>:latest
 
 # Run the image interactively
-$ docker run -it -p 3000:3000 <IMAGE_NAME>:latest
+docker run -it -p 3000:3000 <IMAGE_NAME>:latest
 
 # Push image to docker hub
-$ docker login
-$ docker tag <IMAGE_NAME>:latest <DOCKER_HUB_USER_NAME>/<IMAGE_NAME>:latest
-$ docker push <DOCKER_HUB_USER_NAME>/<IMAGE_NAME>
+docker login
+docker tag <IMAGE_NAME>:latest <DOCKER_HUB_USER_NAME>/<IMAGE_NAME>:latest
+docker push <DOCKER_HUB_USER_NAME>/<IMAGE_NAME>
 
 # Get the container ID
-$ docker ps
+docker ps
 
 # View logs
-$ docker logs <CONTAINER_ID>
+docker logs <CONTAINER_ID>
 
 # Enter the container (In alpine, use sh because bash is not installed by default)
-$ docker exec -it <CONTAINER_ID> /bin/sh
+docker exec -it <CONTAINER_ID> /bin/sh
 ```
 
 ## Docker Files
