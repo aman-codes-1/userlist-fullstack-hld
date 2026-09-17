@@ -4,6 +4,10 @@ This is a Full Stack User List CRUD Application with a High Level Design and a S
 
 ![User List](assets/user_list.png)
 
+## Sample Output
+
+Output label: Users
+
 ## Project Infrastructure Overview
 
 ## 1. [Next.js](https://github.com/vercel/next.js) Frontend
