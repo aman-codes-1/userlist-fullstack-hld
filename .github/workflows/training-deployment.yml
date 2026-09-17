@@ -1,0 +1,21 @@
+name: Training Deployment
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: training-production
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Show deployed commit
+        run: |
+          echo "Deploying training sample"
+          echo "Commit: $GITHUB_SHA"
+
+      - name: Complete sample deployment
+        run: echo "Training deployment completed successfully"
