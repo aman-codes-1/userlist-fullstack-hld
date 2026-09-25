@@ -6,7 +6,7 @@ This is a Full Stack User List CRUD Application with a High Level Design and a S
 
 ## Sample Output
 
-Output label: Users
+Output label: User List HLD
 
 ## Project Infrastructure Overview
 
